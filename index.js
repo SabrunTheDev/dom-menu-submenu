@@ -80,13 +80,15 @@ topMenuEl.addEventListener("click", (event) => {
   });
 
   if (!eventTarget.classList.contains("active")) {
-    if (eventObject.subLinks) {
-      subMenuEl.style.top = "100%";
-    } else {
-      subMenuEl.style.top = "0";
+    if (eventObject) {
+      if (eventObject.subLinks) {
+        subMenuEl.style.top = "100%";
+      } else {
+        subMenuEl.style.top = "0";
+      }
     }
   } else {
-    subMenuEl.style.top = "-100%";
+    subMenuEl.style.top = "0";
   }
 
   if (!eventTarget.matches("a")) {
