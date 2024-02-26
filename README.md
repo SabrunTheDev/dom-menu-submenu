@@ -22,7 +22,40 @@
 ### Part 2
 
 3. **Adding Additional HTML & CSS:**
-   - This part suggests that additional HTML and CSS have been added to the code, but the specific details are not provided.
+
+- Added some additional HTML
+
+```html
+<header>
+  <nav id="top-menu"></nav>
+  <!-- Add the <nav> element below -->
+  <nav id="sub-menu"></nav>
+</header>
+```
+
+- Added some additional CSS
+
+```css
+header,
+#top-menu {
+  position: relative;
+}
+#top-menu {
+  z-index: 20;
+}
+#sub-menu {
+  width: 100%;
+  z-index: 10;
+  transition: top 0.5s ease-out;
+}
+#sub-menu a:hover {
+  background-color: var(--top-menu-bg);
+}
+nav a.active {
+  background-color: var(--sub-menu-bg);
+  color: var(--main-bg);
+}
+```
 
 ### Part 3
 
@@ -34,12 +67,46 @@
 
 5. **Handling Menu Clicks:**
 
-   - The code selects all anchor elements within `topMenuEl` and assigns them to the variable `topMenuLinks`.
-   - An event listener is added to `topMenuEl` to handle clicks.
-   - When a menu item is clicked, it prevents the default behavior, identifies the clicked item, and toggles the "active" class.
-   - The sub-menu (`subMenuEl`) is adjusted to be shown or hidden based on the presence of sub-links in the clicked menu item.
-   - The submenu content is dynamically built based on the clicked menu item's sub-links.
-   - If the clicked item is "About," the content of `mainEl` is updated to show an "About" heading.
+- Updated `menuLinks` array:
+
+```javascript
+var menuLinks = [
+  { text: "about", href: "/about" },
+  {
+    text: "catalog",
+    href: "#",
+    subLinks: [
+      { text: "all", href: "/catalog/all" },
+      { text: "top selling", href: "/catalog/top" },
+      { text: "search", href: "/catalog/search" },
+    ],
+  },
+  {
+    text: "orders",
+    href: "#",
+    subLinks: [
+      { text: "new", href: "/orders/new" },
+      { text: "pending", href: "/orders/pending" },
+      { text: "history", href: "/orders/history" },
+    ],
+  },
+  {
+    text: "account",
+    href: "#",
+    subLinks: [
+      { text: "profile", href: "/account/profile" },
+      { text: "sign out", href: "/account/signout" },
+    ],
+  },
+];
+```
+
+- The code selects all anchor elements within `topMenuEl` and assigns them to the variable `topMenuLinks`.
+- An event listener is added to `topMenuEl` to handle clicks.
+- When a menu item is clicked, it prevents the default behavior, identifies the clicked item, and toggles the "active" class.
+- The sub-menu (`subMenuEl`) is adjusted to be shown or hidden based on the presence of sub-links in the clicked menu item.
+- The submenu content is dynamically built based on the clicked menu item's sub-links.
+- If the clicked item is "About," the content of `mainEl` is updated to show an "About" heading.
 
 6. **Handling Sub-Menu Clicks:**
    - An event listener is added to `subMenuEl` to handle clicks.
